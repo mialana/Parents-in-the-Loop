@@ -1,0 +1,7 @@
+logs
+
+.env
+
+db.sqlite3
+
+mcp_agent.secrets.yaml

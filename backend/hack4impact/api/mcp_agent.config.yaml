@@ -1,0 +1,18 @@
+execution_engine: asyncio
+logger:
+  transports: [console, file]
+  level: info
+  show_progress: true
+  path_settings:
+    path_pattern: "logs/mcp-agent-{unique_id}.jsonl"
+    unique_id: "timestamp" # Options: "timestamp" or "session_id"
+    timestamp_format: "%Y%m%d_%H%M%S"
+
+mcp:
+  servers:
+    filesystem:
+      command: "npx"
+      args: ["-y", "@modelcontextprotocol/server-filesystem", "../assets"]
+
+google:
+  default_model: gemini-2.0-flash
