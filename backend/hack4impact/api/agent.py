@@ -7,7 +7,8 @@ from pydantic import BaseModel
 
 from mcp_agent.agents.agent import Agent
 from mcp_agent.app import MCPApp
-from mcp_agent.workflows.llm.augmented_llm_google import GoogleAugmentedLLM
+# from mcp_agent.workflows.llm.augmented_llm_google import GoogleAugmentedLLM
+from mcp_agent.workflows.llm.augmented_llm_openai import OpenAIAugmentedLLM
 
 from prompt import PROMPT
 
@@ -38,11 +39,11 @@ async def example_usage():
             result = await finder_agent.list_tools()
             logger.info("Tools available:", data=result.model_dump())
 
-            llm = await finder_agent.attach_llm(GoogleAugmentedLLM)
+            # llm = await finder_agent.attach_llm(GoogleAugmentedLLM)
+            llm = await finder_agent.attach_llm(OpenAIAugmentedLLM)
 
             result = await llm.generate_structured(
-                message="""Scan `needs_and_wants.json` and `needs_and_wants.png` in your filesystem.
-            Generate according to your instructions.""",
+                message="""Scan contents of directory and generate according to your instructions.""",
                 response_model=Result
             )
             logger.info(f"Result: {result}")

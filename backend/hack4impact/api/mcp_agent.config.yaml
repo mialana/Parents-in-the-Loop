@@ -12,7 +12,10 @@ mcp:
   servers:
     filesystem:
       command: "npx"
-      args: ["-y", "@modelcontextprotocol/server-filesystem", "../assets"]
+      args: ["-y", "@modelcontextprotocol/server-filesystem", "/Users/Dev/Projects/Parents-in-the-Loop/backend/hack4impact/assets"]
 
-google:
-  default_model: gemini-2.0-flash
+# google:
+#   default_model: gemini-2.0-flash
+
+openai:
+  default_model: gpt-4o-mini
