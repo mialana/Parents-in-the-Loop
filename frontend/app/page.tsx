@@ -70,6 +70,7 @@ export default function ParentInTheLoopPlatform() {
     },
   ]);
   const [message, setMessage] = useState("");
+  const [uploadError, setUploadError] = useState<string | null>(null);
 
   const handleSendMessage = () => {
     if (!inputMessage.trim()) return;
@@ -114,6 +115,52 @@ export default function ParentInTheLoopPlatform() {
 
     // In a real implementation, you would call DeepL API here
     console.log(`Translating to ${nextLanguage}`);
+  };
+
+  const handleFileUpload = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const files = event.target.files;
+    if (!files || files.length === 0) return;
+
+    setUploadError(null); // Clear any previous errors
+    const file = files[0];
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("name", file.name);
+    formData.append("type", file.type);
+
+    try {
+      console.log("Uploading file:", file.name);
+      const response = await fetch("http://127.0.0.1:8000/api/upload/", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Upload failed");
+      }
+
+      const data = await response.json();
+      console.log("Upload successful:", data);
+
+      // Add the new document to the list
+      setUploadedDocs((prev) => [
+        ...prev,
+        {
+          name: data.name,
+          type: data.type,
+          uploadDate: new Date(data.upload_date),
+          status: data.status,
+        },
+      ]);
+    } catch (error) {
+      console.error("Error uploading file:", error);
+      setUploadError(
+        error instanceof Error ? error.message : "Failed to upload file"
+      );
+    }
   };
 
   useEffect(() => {
@@ -202,9 +249,24 @@ export default function ParentInTheLoopPlatform() {
               <p className="text-xs text-blue-600">
                 Report cards, letters from school, IEP papers, etc.
               </p>
-              <Button size="sm" className="mt-2" variant="outline">
+              <input
+                type="file"
+                id="file-upload"
+                className="hidden"
+                onChange={handleFileUpload}
+                accept=".pdf,.doc,.docx,image/*"
+              />
+              <Button
+                size="sm"
+                className="mt-2"
+                variant="outline"
+                onClick={() => document.getElementById("file-upload")?.click()}
+              >
                 Choose Files or Photos
               </Button>
+              {uploadError && (
+                <p className="text-red-500 text-sm mt-2">{uploadError}</p>
+              )}
             </div>
           </div>
 
