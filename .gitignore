@@ -1,7 +1,83 @@
 logs
-
 .env
-
 db.sqlite3
-
 mcp_agent.secrets.yaml
+
+# Node.js / Next.js
+frontend/node_modules/
+frontend/.next/
+frontend/.env
+frontend/.env.*
+frontend/package-lock.json
+frontend/pnpm-lock.yaml
+frontend/.vercel
+frontend/.turbo
+frontend/dist/
+frontend/build/
+frontend/coverage/
+frontend/.DS_Store
+frontend/*.pem
+frontend/.env*.local
+
+# Python / Django
+backend/__pycache__/
+backend/**/*.pyc
+backend/db.sqlite3
+backend/.env
+backend/venv/
+backend/.env.*
+backend/*.pyc
+backend/*.pyo
+backend/*.pyd
+backend/.Python
+backend/manage.py
+backend/media/
+backend/static/
+backend/logs/
+backend/.coverage
+backend/htmlcov/
+backend/.pytest_cache/
+backend/.mypy_cache/
+backend/.ruff_cache/
+
+# IDEs and editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+*.sublime-workspace
+*.sublime-project
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build outputs
+dist/
+build/
+out/
+.next/
+.nuxt/
+.cache/ 
