@@ -1,0 +1,11 @@
+{
+    "example-hw-reading": {
+        "timeNeeded": "5 hours"
+    },
+    "example-hw-spelling": {
+        "timeNeeded": "2 hours"
+    },
+    "example-hw-math": {
+        "timeNeeded": "30 minutes"
+    }
+}
