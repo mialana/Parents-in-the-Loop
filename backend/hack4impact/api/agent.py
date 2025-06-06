@@ -1,21 +1,23 @@
 import asyncio
 import time
 
+from typing import Dict
+
 from pydantic import BaseModel
 
 from mcp_agent.agents.agent import Agent
 from mcp_agent.app import MCPApp
 from mcp_agent.workflows.llm.augmented_llm_google import GoogleAugmentedLLM
 
+from prompt import PROMPT
+
 app = MCPApp(
     name="mcp_basic_agent"
 )
 
 
-class Essay(BaseModel):
-    title: str
-    body: str
-    conclusion: str
+class Result(BaseModel):
+    sections: Dict
 
 
 async def example_usage():
@@ -27,9 +29,7 @@ async def example_usage():
 
         finder_agent = Agent(
             name="finder",
-            instruction="""You are an agent with the ability to fetch URLs. Your job is to identify
-            the closest match to a user's request, make the appropriate tool calls,
-            and return the URI and CONTENTS of the closest match.""",
+            instruction=PROMPT,
             server_names=["filesystem"],
         )
 
@@ -40,16 +40,12 @@ async def example_usage():
 
             llm = await finder_agent.attach_llm(GoogleAugmentedLLM)
 
-            result = await llm.generate_str(
-                message="Print the first 2 paragraphs of https://modelcontextprotocol.io/introduction",
-            )
-            logger.info(f"First 2 paragraphs of Model Context Protocol docs: {result}")
-
             result = await llm.generate_structured(
-                message="Create a short essay using the first 2 paragraphs.",
-                response_model=Essay,
+                message="""Scan `needs_and_wants.json` and `needs_and_wants.png` in your filesystem.
+            Generate according to your instructions.""",
+                response_model=Result
             )
-            logger.info(f"Structured paragraphs: {result}")
+            logger.info(f"Result: {result}")
 
 
 def main():
