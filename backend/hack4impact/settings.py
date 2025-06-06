@@ -127,8 +127,13 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Add CORS settings
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # React default port
+    "http://localhost:3000",  # Next.js default port
     "http://127.0.0.1:3000",
+    "http://localhost:5173",  # Vite default port
+    "http://127.0.0.1:5173",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
+
+# Allow all origins in development
+CORS_ALLOW_ALL_ORIGINS = True

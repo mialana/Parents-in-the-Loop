@@ -71,7 +71,7 @@ export default function ParentInTheLoopPlatform() {
   ]);
   const [message, setMessage] = useState("");
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (!inputMessage.trim()) return;
 
     const newMessage: ChatMessage = {
@@ -82,19 +82,32 @@ export default function ParentInTheLoopPlatform() {
     };
 
     setMessages((prev) => [...prev, newMessage]);
+    const currentInput = inputMessage;
     setInputMessage("");
 
-    // Simulate AI response
-    setTimeout(() => {
+    try {
+      const response = await api.post('/chat/', {
+        message: currentInput,
+        conversation_history: messages
+      });
+
       const aiResponse: ChatMessage = {
         id: (Date.now() + 1).toString(),
         type: "ai",
-        content:
-          "I understand. Let me look at your school papers and help you know what to do. I will give you simple steps to follow.",
+        content: response.response,
         timestamp: new Date(),
       };
       setMessages((prev) => [...prev, aiResponse]);
-    }, 1000);
+    } catch (error) {
+      console.error('Error sending message:', error);
+      const errorResponse: ChatMessage = {
+        id: (Date.now() + 1).toString(),
+        type: "ai",
+        content: "I'm sorry, I'm having trouble connecting right now. Please try again in a moment.",
+        timestamp: new Date(),
+      };
+      setMessages((prev) => [...prev, errorResponse]);
+    }
   };
 
   const handleTranslate = async () => {
