@@ -5,16 +5,18 @@ annotated-types==0.7.0
 anyio==4.9.0
 asgiref==3.8.1
 attrs==25.3.0
+cachetools==5.5.2
 certifi==2025.4.26
 charset-normalizer==3.4.2
 click==8.2.1
 distro==1.9.0
 Django==5.2.2
-django-cors-headers==4.7.0
 djangorestframework==3.16.0
 docstring_parser==0.16
 fastapi==0.115.12
 frozenlist==1.6.2
+google-auth==2.40.3
+google-genai==1.19.0
 googleapis-common-protos==1.70.0
 h11==0.16.0
 httpcore==1.0.9
@@ -26,6 +28,7 @@ instructor==1.8.3
 Jinja2==3.1.6
 jiter==0.8.2
 joblib==1.5.1
+jsonref==1.1.0
 markdown-it-py==3.0.0
 MarkupSafe==3.0.2
 mcp==1.9.3
@@ -49,6 +52,8 @@ packaging==25.0
 prompt_toolkit==3.0.51
 propcache==0.3.1
 protobuf==5.29.5
+pyasn1==0.6.1
+pyasn1_modules==0.4.2
 pydantic==2.11.5
 pydantic-settings==2.9.1
 pydantic_core==2.33.2
@@ -59,6 +64,7 @@ PyYAML==6.0.2
 regex==2024.11.6
 requests==2.32.3
 rich==13.9.4
+rsa==4.9.1
 scikit-learn==1.7.0
 scipy==1.15.3
 shellingham==1.5.4
