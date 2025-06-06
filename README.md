@@ -5,6 +5,7 @@ An AI-powered interface targeted towards school systems to bridge language barri
 - cd frontend
 - npm install
 - npm run dev
+  
 The server should start at http://127.0.0.1:3000/
 
 # Run backend:
@@ -15,4 +16,5 @@ The server should start at http://127.0.0.1:3000/
 - pip install djangorestframework
 - pip install django-cors-headers
 - python manage.py runserver
+  
 The server should start at http://127.0.0.1:8000/
