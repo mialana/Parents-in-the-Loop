@@ -6,7 +6,7 @@ An AI-powered interface targeted towards school systems to bridge language barri
 - npm install
 - npm run dev
   
-The server should start at http://127.0.0.1:3000/
+The frontend should start at localhost:3000
 
 # Run backend:
 - cd backend
@@ -14,4 +14,4 @@ The server should start at http://127.0.0.1:3000/
 - pip install -r requirements.txt
 - python manage.py runserver
   
-The server should start at http://127.0.0.1:8000/
+The server should start at localhost:8000
