@@ -81,3 +81,5 @@ out/
 .next/
 .nuxt/
 .cache/ 
+
+__pycache__/

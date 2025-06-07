@@ -21,7 +21,7 @@ class Result(BaseModel):
     sections: Dict
 
 
-async def example_usage():
+async def query_assets():
     async with app.run() as agent_app:
         logger = agent_app.logger
         context = agent_app.context
@@ -51,7 +51,7 @@ async def example_usage():
 
 def main():
     start = time.time()
-    asyncio.run(example_usage())
+    asyncio.run(query_assets())
     end = time.time()
     t = end - start
 

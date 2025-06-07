@@ -1,8 +1,8 @@
 from django.urls import path
-from .views import hello_world, upload_document
+from .views import get_dashboard_content, upload_document
 
 
 urlpatterns = [
-    path('hello/', hello_world),
+    path('dashboard/content/str:name/', get_dashboard_content),
     path('upload/', upload_document),
 ]

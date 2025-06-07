@@ -2,13 +2,19 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from .models import Document
+from django.shortcuts import get_object_or_404
 from django.core.files.storage import default_storage
 import logging
 
 logger = logging.getLogger(__name__)
 
+
 @api_view(['GET'])
-def hello_world(request):
+def get_dashboard_content(request, name):
+    logger.info(name)
+
+    document = get_object_or_404(Document, name=name)
+
     return Response({"message": "Hello, world!"})
 
 @api_view(['POST'])
