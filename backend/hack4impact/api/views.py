@@ -5,17 +5,20 @@ from .models import Document
 from django.shortcuts import get_object_or_404
 from django.core.files.storage import default_storage
 import logging
+import asyncio
+
+from .agent import query
 
 logger = logging.getLogger(__name__)
 
 
 @api_view(['GET'])
 def get_dashboard_content(request, name):
-    logger.info(name)
-
     document = get_object_or_404(Document, name=name)
 
-    return Response({"message": "Hello, world!"})
+    result = asyncio.run(query("""Scan contents of directory and generate according to your instructions."""))
+
+    return Response({"message": result})
 
 @api_view(['POST'])
 def upload_document(request):
