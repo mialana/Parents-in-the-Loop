@@ -166,9 +166,7 @@ export default function ParentInTheLoopPlatform() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await api.get("/dashboard/content/needs_and_wants.png/");
-        console.log(data)
-        setMessage(data.message);
+        // setMessage(data.message);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
